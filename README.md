@@ -22,11 +22,15 @@
 - دریافت کانفیگ ها با آیکون کپی در آخر صفحه
 
 # مراحل نصب
-1. دانلود فایل template
+1. دانلود فایل template با پشتیبانی
+```sh
+sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/SheykhDavid/marzban-sub/main/telegram/index.html
+```
+1.1 دانلود فایل template بدون پشتیبانی
+
 ```sh
 sudo wget -N -P /var/lib/marzban/templates/subscription/  https://raw.githubusercontent.com/SheykhDavid/marzban-sub/main/index.html
 ```
-
 2. دستورات زیر رو تو ترمینال سرورتون بزنید:
 ```sh
 echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
