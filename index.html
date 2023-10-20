@@ -3200,6 +3200,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
             document.getElementById("ios-v2box").href = `v2box://install-sub?url=${fullUrl}&name=Sub`
             document.getElementById("android-v2rayng").href = `v2rayng://install-config?url=${fullUrl}`;
             document.getElementById("ios-singbox").href = `sing-box://import-remote-profile?url=${fullUrl}#Sub`;
+            document.getElementById("android-hiddify").href = `hiddify://install-config?url=${fullUrl}`;
             document.getElementById("android-singbox").href = `sing-box://import-remote-profile?url=${fullUrl}#Sub`;
             document.getElementById("android-nekobox").href = `sn://subscription?url=${fullUrl}&name=Sub`;
             document.getElementById("windows-clashverge").href = `clash://install-config?url=${fullUrl}`
@@ -3478,15 +3479,15 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
         Alpine.start();
     </script>
     <script defer>
-        const dataLimit = "{% if not user.data_limit %}∞{% else %}{{ user.data_limit }}{% endif %}";
+        const dataLimit = "{% if not user.data_limit %}نامحدود{% else %}{{ user.data_limit }}{% endif %}";
         const dataUsed = "{{ user.used_traffic }}";
-        const expireDateInit = "{% if not user.expire %}∞{% else %}{% set current_timestamp = now().timestamp() %}{{ user.expire | datetime }}{% endif %}";
+        const expireDateInit = "{% if not user.expire %}نامحدود{% else %}{% set current_timestamp = now().timestamp() %}{{ user.expire | datetime }}{% endif %}";
         var tmpUsage = ((parseFloat(dataUsed) / parseFloat(dataLimit)) * 100).toFixed(2);
         if (tmpUsage > 100) tmpUsage = 100;
-        const dataUsage = dataLimit == "∞" ? 100 : tmpUsage;
+        const dataUsage = dataLimit == "نامحدود" ? 100 : tmpUsage;
         const dataChartColor = dataUsage < 40 ? "bg-green-500" : dataUsage < 80 ? "bg-yellow-600" : "bg-red-500";
         const resetInterval = "{{ user.data_limit_reset_strategy.value }}";
-        let expireDateVar = expireDateInit.includes("∞") ? "∞" : localStorage.getItem("lang") == "fa" ? new Date(expireDateInit).toLocaleString("fa-IR-u-nu-latn").replace(",", " ") : expireDateInit;
+        let expireDateVar = expireDateInit.includes("نامحدود") ? "نامحدود" : localStorage.getItem("lang") == "fa" ? new Date(expireDateInit).toLocaleString("fa-IR-u-nu-latn").replace(",", " ") : expireDateInit;
         let appsJson = {
             IOS: {
                 Streisand: {
@@ -3637,6 +3638,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 addClashMeta: "Clash Meta",
                 addClashVerge: "Clash Verge",
                 addClashX: "Clash X",
+                addHiddify: "Hiddify Next",
                 install: "Click on the download link to download the program for your operating system!",
                 support: "Support",
                 oneClick: "To use Config, just click on the program you are using!",
@@ -3714,6 +3716,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 addShadowrocket: "Shadowrocket",
                 addsingbox: "Sing-Box",
                 addV2rayN: "v2rayN",
+                addHiddify: "Hiddify Next",
                 addnekoray: "Nekoray",
                 addClash: "Clash",
                 addClashMeta: "Clash Meta",
@@ -3789,6 +3792,7 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                 V2Box: "iOS - Download v2Box",
                 addto: "Быстрая настройка",
                 addV2rayNG: "v2rayNG",
+                addHiddify: "Hiddify Next",
                 addStreisand: "Streisand",
                 addFoXray: "FoXray",
                 addNekoBox: "NekoBox",
@@ -3983,12 +3987,16 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                             x-text="[status == 'active' ? $t('active') : status == 'limited' ? $t('limited') : status == 'expired' ? $t('expired') : $t('disabled')]"
                             :class="[status == 'active' ? 'bg-green-500' : status == 'limited' ? 'bg-red-600' : status == 'expired' ? 'bg-orange-600' : 'bg-gray-600']"></span>
                     </div>
-                    <div x-data="{ usedTraffic: {{ user.used_traffic }}, dataLimit: {% if not user.data_limit %}∞{% else %}{{ user.data_limit }}{% endif %} }"
+                    <div x-data="{ usedTraffic: {{ user.used_traffic }}, dataLimit: {% if not user.data_limit %}نامحدود{% else %}{{ user.data_limit }}{% endif %} }"
                         class="basis-2/3 flex flex-row items-center sm:ltr:pl-9 sm:rtl:pr-9">
                         <div class="data-usage w-full">
+                            <div class="flex items-center justify-center w-full pb-1">
+                                <img class="pb-1 w-20 h-20 rounded-2xl" src="./Untitled.png" alt="">
+                            </div>
                             <div class="dark:text-white text-black text-center mb-2"><span class="font-bold"
                                     x-text="$t('dataUsage')"></span><span dir="ltr">{{ user.used_traffic | bytesformat
-                                    }} / {% if not user.data_limit %}∞{% else %}{{ user.data_limit | bytesformat }}{%
+                                    }} / {% if not user.data_limit %}نامحدود{% else %}{{ user.data_limit | bytesformat
+                                    }}{%
                                     endif %}</span>
                             </div>
                             <div class="dark:text-white text-black mt-4 text-center"><span class="font-bold"
@@ -4000,7 +4008,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                 x-text="resetInterval == 'year' ? $t('resetIntervalYear') : resetInterval == 'month' ? $t('resetIntervalMonth') : resetInterval == 'week' ? $t('resetIntervalWeek') : resetInterval == 'day' ? $t('resetIntervalDay') : ''">
                             </div>
                             <div class="dark:text-white text-black mt-5 text-center"><span class="font-bold"
-                                    x-text="$t('remainingDays')"></span><span>{% if not user.expire %}∞{% else %}{% set
+                                    x-text="$t('remainingDays')"></span><span>{% if not user.expire %}نامحدود{% else
+                                    %}{% set
                                     remaining_days = ((user.expire - now().timestamp()) // (24 * 3600)) %}({{
                                     remaining_days | int if (remaining_days | int) > -1 else 0 }}){% endif
                                     %}</span><span x-text="$t('remainingDaysSufix')"></span></div>
@@ -4343,6 +4352,19 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                                                     </svg>
                                                                     <span x-text="$t('addFoXray')">
                                                                     </span>
+                                                                    <div
+                                                                        class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" fill="currentColor"
+                                                                            class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                                                clip-rule="evenodd" />
+                                                                        </svg>
+
+
+                                                                    </div>
                                                                 </div>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
@@ -5214,6 +5236,122 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                             </div>
                                             <div class="flex flex-col gap-y-4">
                                                 <div
+                                                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
+                                                    <!-- Accordion item -->
+                                                    <div x-data="{ expanded: false }">
+                                                        <h2>
+                                                            <button style="direction: ltr;" id="faqs-title-01"
+                                                                type="button"
+                                                                class="flex items-center p-4 justify-between w-full text-left font-semibold"
+                                                                @click="expanded = !expanded" :aria-expanded="expanded"
+                                                                aria-controls="faqs-text-01">
+                                                                <div
+                                                                    class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
+                                                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M9.17 1.165C9.07551 0.997296 8.92015 0.872344 8.73609 0.816007C8.55202 0.75967 8.35334 0.776261 8.18117 0.862346C8.009 0.948432 7.87652 1.09742 7.81115 1.27847C7.74578 1.45953 7.75253 1.65878 7.83 1.835L8.667 3.51C8.00017 3.9556 7.42938 4.53028 6.98832 5.20012C6.54726 5.86996 6.24487 6.62137 6.099 7.41L5.99 8H18.01L17.901 7.41C17.7551 6.62137 17.4527 5.86996 17.0117 5.20012C16.5706 4.53028 15.9998 3.9556 15.333 3.51L16.171 1.835C16.258 1.65726 16.2713 1.45232 16.2078 1.26486C16.1444 1.07739 16.0095 0.922596 15.8324 0.834197C15.6553 0.745798 15.4505 0.730964 15.2626 0.792928C15.0746 0.854892 14.9188 0.988631 14.829 1.165L13.992 2.839C13.352 2.61401 12.6784 2.49938 12 2.5C11.3216 2.49938 10.648 2.61401 10.008 2.839L9.17 1.165ZM3.5 9C3.10218 9 2.72064 9.15804 2.43934 9.43934C2.15804 9.72064 2 10.1022 2 10.5V15.5C2 15.8978 2.15804 16.2794 2.43934 16.5607C2.72064 16.842 3.10218 17 3.5 17C3.89782 17 4.27936 16.842 4.56066 16.5607C4.84196 16.2794 5 15.8978 5 15.5V10.5C5 10.1022 4.84196 9.72064 4.56066 9.43934C4.27936 9.15804 3.89782 9 3.5 9ZM20.5 9C20.1022 9 19.7206 9.15804 19.4393 9.43934C19.158 9.72064 19 10.1022 19 10.5V15.5C19 15.8978 19.158 16.2794 19.4393 16.5607C19.7206 16.842 20.1022 17 20.5 17C20.8978 17 21.2794 16.842 21.5607 16.5607C21.842 16.2794 22 15.8978 22 15.5V10.5C22 10.1022 21.842 9.72064 21.5607 9.43934C21.2794 9.15804 20.8978 9 20.5 9ZM18 9H6V17.5C6 17.8978 6.15804 18.2794 6.43934 18.5607C6.72064 18.842 7.10218 19 7.5 19H8V21.5C8 21.8978 8.15804 22.2794 8.43934 22.5607C8.72064 22.842 9.10218 23 9.5 23C9.89782 23 10.2794 22.842 10.5607 22.5607C10.842 22.2794 11 21.8978 11 21.5V19H13V21.5C13 21.8978 13.158 22.2794 13.4393 22.5607C13.7206 22.842 14.1022 23 14.5 23C14.8978 23 15.2794 22.842 15.5607 22.5607C15.842 22.2794 16 21.8978 16 21.5V19H16.5C16.8978 19 17.2794 18.842 17.5607 18.5607C17.842 18.2794 18 17.8978 18 17.5V9Z"
+                                                                            fill="white" />
+                                                                    </svg>
+                                                                    <span x-text="$t('addHiddify')">
+                                                                    </span>
+                                                                    <div
+                                                                        class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" fill="currentColor"
+                                                                            class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                                                clip-rule="evenodd" />
+                                                                        </svg>
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor"
+                                                                    :class="{'!rotate-180': expanded}"
+                                                                    class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                                        d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                                                </svg>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="faqs-text-01" role="region"
+                                                            aria-labelledby="faqs-title-01"
+                                                            class="grid text-sm text-white overflow-hidden transition-all duration-300 ease-in-out"
+                                                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+                                                            <div class="overflow-hidden">
+                                                                <div class="p-4 pb-6">
+                                                                    <div
+                                                                        class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/mtdulhdc.json"
+                                                                            trigger="hover"
+                                                                            colors="primary:#fff,secondary:#fff"
+                                                                            class="w-12 h-12 md:w-20 md:h-20 ">
+                                                                        </lord-icon>
+                                                                        <h3 x-text="$t('downloadApp')"
+                                                                            class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
+                                                                        </h3>
+                                                                    </div>
+                                                                    <p x-text="$t('clickForDownload')"
+                                                                        class="text-sm mb-4 font-normal text-white lg:text-base">
+                                                                    </p>
+                                                                    <a href="https://github.com/hiddify/hiddify-next/releases/latest/download/hiddify-android-universal.apk"
+                                                                        class=" flex mb-4 items-center gap-x-4 w-full
+                                                                        bg-gray-800 shadow-md px-3 py-2 rounded-3xl
+                                                                        justify-between">
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/albqovim.json"
+                                                                            trigger="loop" delay="1500"
+                                                                            colors="primary:#fff" state="intro">
+                                                                        </lord-icon>
+                                                                        <span x-text="$t('download')"></span>
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/albqovim.json"
+                                                                            trigger="loop" delay="1500"
+                                                                            colors="primary:#fff" state="intro">
+                                                                        </lord-icon>
+                                                                    </a>
+                                                                    <div
+                                                                        class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/vcoyflbj.json"
+                                                                            trigger="hover"
+                                                                            colors="primary:#fff,secondary:#fff"
+                                                                            class="w-12 h-12 md:w-20 md:h-20 ">
+                                                                        </lord-icon>
+                                                                        <h3 x-text="$t('addConfigs')"
+                                                                            class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
+                                                                        </h3>
+                                                                    </div>
+                                                                    <p x-text="$t('clickForAdd')"
+                                                                        class="text-sm mb-4 font-normal text-white lg:text-base">
+                                                                    </p>
+                                                                    <a id="android-hiddify" class=" flex mb-4 items-center gap-x-4 w-full
+                                                                        bg-stone-800 shadow-md px-3 py-2 rounded-3xl
+                                                                        justify-between">
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/mrdiiocb.json"
+                                                                            trigger="loop" delay="2000"
+                                                                            colors="primary:#fff">
+                                                                        </lord-icon>
+                                                                        <span x-text="$t('AddtoApp')"></span>
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/mrdiiocb.json"
+                                                                            trigger="loop" delay="2000"
+                                                                            colors="primary:#fff">
+                                                                        </lord-icon>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
                                                     class="text-white bg-gradient-to-r from-slate-500 via-slate-600 to-slate-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
                                                     <!-- Accordion item -->
                                                     <div x-data="{ expanded: false }">
@@ -5922,6 +6060,90 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                             </div>
                                             <div class="flex flex-col gap-y-4">
                                                 <div
+                                                    class="text-white bg-gradient-to-r from-zinc-500 via-zinc-600 to-zinc-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
+                                                    <!-- Accordion item -->
+                                                    <div x-data="{ expanded: false }">
+                                                        <h2>
+                                                            <button style="direction: ltr;" id="faqs-title-01"
+                                                                type="button"
+                                                                class="flex items-center p-4 justify-between w-full text-left font-semibold"
+                                                                @click="expanded = !expanded" :aria-expanded="expanded"
+                                                                aria-controls="faqs-text-01">
+                                                                <div
+                                                                    class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
+                                                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
+                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                            d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z"
+                                                                            fill="white" />
+                                                                    </svg>
+                                                                    <span x-text="$t('addnekoray')">
+                                                                    </span>
+                                                                    <div
+                                                                        class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" fill="currentColor"
+                                                                            class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                                                clip-rule="evenodd" />
+                                                                        </svg>
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor"
+                                                                    :class="{'!rotate-180': expanded}"
+                                                                    class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                                        d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                                                </svg>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="faqs-text-01" role="region"
+                                                            aria-labelledby="faqs-title-01"
+                                                            class="grid text-sm text-white overflow-hidden transition-all duration-300 ease-in-out"
+                                                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+                                                            <div class="overflow-hidden">
+                                                                <div class="p-4 pb-6">
+                                                                    <div
+                                                                        class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/mtdulhdc.json"
+                                                                            trigger="hover"
+                                                                            colors="primary:#fff,secondary:#fff"
+                                                                            class="w-12 h-12 md:w-20 md:h-20 ">
+                                                                        </lord-icon>
+                                                                        <h3 x-text="$t('downloadApp')"
+                                                                            class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
+                                                                        </h3>
+                                                                    </div>
+                                                                    <p x-text="$t('clickForDownload')"
+                                                                        class="text-sm mb-4 font-normal text-white lg:text-base">
+                                                                    </p>
+                                                                    <a href="https://github.com/MatsuriDayo/nekoray/releases/download/3.21/nekoray-3.21-2023-09-12-windows64.zip"
+                                                                        class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/albqovim.json"
+                                                                            trigger="loop" delay="1500"
+                                                                            colors="primary:#fff" state="intro">
+                                                                        </lord-icon>
+                                                                        <span x-text="$t('download')"></span>
+                                                                        <lord-icon class="w-8 h-8"
+                                                                            src="https://cdn.lordicon.com/albqovim.json"
+                                                                            trigger="loop" delay="1500"
+                                                                            colors="primary:#fff" state="intro">
+                                                                        </lord-icon>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
                                                     class="text-white bg-gradient-to-r from-emerald-500 via-emerald-600 to-emerald-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
                                                     <!-- Accordion item -->
                                                     <div x-data="{ expanded: false }">
@@ -5979,77 +6201,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                                                         class="text-sm mb-4 font-normal text-white lg:text-base">
                                                                     </p>
                                                                     <a href="https://github.com/2dust/v2rayN/releases/download/6.27/zz_v2rayN-With-Core-SelfContained.7z"
-                                                                        class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
-                                                                        <lord-icon class="w-8 h-8"
-                                                                            src="https://cdn.lordicon.com/albqovim.json"
-                                                                            trigger="loop" delay="1500"
-                                                                            colors="primary:#fff" state="intro">
-                                                                        </lord-icon>
-                                                                        <span x-text="$t('download')"></span>
-                                                                        <lord-icon class="w-8 h-8"
-                                                                            src="https://cdn.lordicon.com/albqovim.json"
-                                                                            trigger="loop" delay="1500"
-                                                                            colors="primary:#fff" state="intro">
-                                                                        </lord-icon>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="text-white bg-gradient-to-r from-zinc-500 via-zinc-600 to-zinc-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
-                                                    <!-- Accordion item -->
-                                                    <div x-data="{ expanded: false }">
-                                                        <h2>
-                                                            <button style="direction: ltr;" id="faqs-title-01"
-                                                                type="button"
-                                                                class="flex items-center p-4 justify-between w-full text-left font-semibold"
-                                                                @click="expanded = !expanded" :aria-expanded="expanded"
-                                                                aria-controls="faqs-text-01">
-                                                                <div
-                                                                    class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
-                                                                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"
-                                                                        xmlns="http://www.w3.org/2000/svg">
-                                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                                            d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z"
-                                                                            fill="white" />
-                                                                    </svg>
-                                                                    <span x-text="$t('addnekoray')">
-                                                                    </span>
-                                                                </div>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="1.5"
-                                                                    stroke="currentColor"
-                                                                    :class="{'!rotate-180': expanded}"
-                                                                    class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
-                                                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                                                        d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                                                                </svg>
-                                                            </button>
-                                                        </h2>
-                                                        <div id="faqs-text-01" role="region"
-                                                            aria-labelledby="faqs-title-01"
-                                                            class="grid text-sm text-white overflow-hidden transition-all duration-300 ease-in-out"
-                                                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
-                                                            <div class="overflow-hidden">
-                                                                <div class="p-4 pb-6">
-                                                                    <div
-                                                                        class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
-                                                                        <lord-icon
-                                                                            src="https://cdn.lordicon.com/mtdulhdc.json"
-                                                                            trigger="hover"
-                                                                            colors="primary:#fff,secondary:#fff"
-                                                                            class="w-12 h-12 md:w-20 md:h-20 ">
-                                                                        </lord-icon>
-                                                                        <h3 x-text="$t('downloadApp')"
-                                                                            class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
-                                                                        </h3>
-                                                                    </div>
-                                                                    <p x-text="$t('clickForDownload')"
-                                                                        class="text-sm mb-4 font-normal text-white lg:text-base">
-                                                                    </p>
-                                                                    <a href="https://github.com/MatsuriDayo/nekoray/releases/download/3.21/nekoray-3.21-2023-09-12-windows64.zip"
                                                                         class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
                                                                         <lord-icon class="w-8 h-8"
                                                                             src="https://cdn.lordicon.com/albqovim.json"
@@ -6233,26 +6384,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <h2 x-text="$t('telsupport')"
-                        class="mb-4 mt-8 text-3xl font-black leading-none tracking-tight text-white md:text-5xl">
-
-                    </h2>
-                    <p x-text="$t('supTelInfo')" class="text-lg font-normal mb-4 text-gray-300 lg:text-xl"></p>
-                    <div class="flex flex-col gap-y-4">
-                        <h2 class="font-bold text-white text-2xl mb-2" x-text="$t('sup')"></h2>
-                        <a href="https://t.me/yourID"
-                            class="py-3 px-4 transition-all duration-200 inline-flex gap-x-3 justify-center text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg">
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6 fill-white"
-                                viewBox="0 0 50 50">
-                                <path
-                                    d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375	c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219	c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966	c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693	c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351	c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z">
-                                </path>
-                            </svg>
-
-
-                            <span class="sm:text-lg" x-text="$t('support')"></span>
-                        </a>
                     </div>
                     <div class="flex mt-6 items-center justify-center gap-x-4 mb-4">
                         <button id="qrIconBtn"
