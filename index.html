@@ -4066,6 +4066,155 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                             </div>
                                             <div class="flex flex-col gap-y-4">
                                                 <div
+                                                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
+                                                    <!-- Accordion item -->
+                                                    <div x-data="{ expanded: false }">
+                                                        <h2>
+                                                            <button style="direction: ltr;" id="faqs-title-01"
+                                                                type="button"
+                                                                class="flex items-center p-4 justify-between w-full text-left font-semibold"
+                                                                @click="expanded = !expanded" :aria-expanded="expanded"
+                                                                aria-controls="faqs-text-01">
+                                                                <div
+                                                                    class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
+                                                                    <svg width="24" height="24" viewBox="0 0 24 24"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <g clip-path="url(#clip0_20_20)">
+                                                                            <path
+                                                                                d="M11.9523 10.765C12.066 11.178 11.8686 11.5256 11.5874 11.8681C8.48852 15.6661 5.39565 19.4692 2.29679 23.2672C2.12928 23.4686 1.94383 23.6752 1.71052 23.8162C1.29175 24.063 0.693518 23.9875 0.346542 23.7004C-0.0423113 23.383 -0.126064 22.9095 0.208948 22.4864C0.974689 21.5193 1.76436 20.5673 2.54805 19.6102C4.62991 17.0564 6.71176 14.4975 8.80559 11.9487C8.96711 11.7523 8.93122 11.6263 8.77568 11.44C6.22121 8.45294 3.67871 5.46088 1.14219 2.46379C0.514047 1.72333 0.669589 0.776345 1.48319 0.282706C2.29081 -0.210934 3.40352 -0.0497451 4.04364 0.700788C6.13746 3.14884 8.20735 5.60696 10.2892 8.06004C10.6781 8.52346 11.0609 8.99191 11.4677 9.44526C11.8087 9.83312 12.0121 10.2512 11.9523 10.765Z"
+                                                                                fill="white" />
+                                                                            <path
+                                                                                d="M22.7803 0.176945C23.3008 0.171908 23.6298 0.317984 23.8452 0.635324C24.0905 1.00303 24.0307 1.35563 23.7615 1.68809C22.7145 2.97759 21.6616 4.2671 20.6147 5.55661C18.9337 7.62183 17.2586 9.68706 15.5597 11.7472C15.3563 11.9941 15.3563 12.1452 15.5656 12.392C18.144 15.4495 20.7105 18.5121 23.2709 21.5797C23.8632 22.2849 23.6897 23.2168 22.906 23.6903C22.0505 24.2091 20.9737 24.0681 20.3455 23.3276C18.3534 20.9602 16.3673 18.5776 14.3811 16.2051C13.8128 15.5251 13.2445 14.8501 12.6821 14.1701C12.0899 13.4599 12.0719 12.6791 12.6462 11.9739C15.7152 8.21118 18.7901 4.45347 21.8591 0.685695C22.1163 0.383467 22.4094 0.171908 22.7803 0.176945Z"
+                                                                                fill="white" />
+                                                                        </g>
+                                                                        <defs>
+                                                                            <clipPath id="clip0_20_20">
+                                                                                <rect width="24" height="24"
+                                                                                    fill="white" />
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                    </svg>
+                                                                    <span x-text="$t('addFoXray')">
+                                                                    </span>
+                                                                    <div
+                                                                        class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
+
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            viewBox="0 0 24 24" fill="currentColor"
+                                                                            class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                                                                clip-rule="evenodd" />
+                                                                        </svg>
+
+
+                                                                    </div>
+                                                                </div>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" stroke-width="1.5"
+                                                                    stroke="currentColor"
+                                                                    :class="{'!rotate-180': expanded}"
+                                                                    class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                                        d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                                                                </svg>
+                                                            </button>
+                                                        </h2>
+                                                        <div id="faqs-text-01" role="region"
+                                                            aria-labelledby="faqs-title-01"
+                                                            class="grid text-sm text-white overflow-hidden transition-all duration-300 ease-in-out"
+                                                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
+                                                            <div class="overflow-hidden">
+                                                                <div class="p-4 pb-6">
+                                                                    <div class="flex flex-col">
+                                                                        <div class="flex items-center gap-x-2">
+                                                                            <span x-text="$t('needediOS')"></span>
+                                                                            <div
+                                                                                class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
+                                                                                <svg width="24" height="24"
+                                                                                    viewBox="0 0 24 24" fill="none"
+                                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                                    <g clip-path="url(#clip0_23_24)">
+                                                                                        <path fill-rule="evenodd"
+                                                                                            clip-rule="evenodd"
+                                                                                            d="M4.36364 0C3.20633 0 2.09642 0.459739 1.27808 1.27808C0.459739 2.09642 0 3.20633 0 4.36364V19.6364C0 20.7937 0.459739 21.9036 1.27808 22.7219C2.09642 23.5403 3.20633 24 4.36364 24H19.6364C20.7937 24 21.9036 23.5403 22.7219 22.7219C23.5403 21.9036 24 20.7937 24 19.6364V4.36364C24 3.20633 23.5403 2.09642 22.7219 1.27808C21.9036 0.459739 20.7937 0 19.6364 0H4.36364ZM3.81818 8.82109C3.81818 8.53176 3.93312 8.25429 4.1377 8.0497C4.34229 7.84512 4.61976 7.73018 4.90909 7.73018C5.19842 7.73018 5.47589 7.84512 5.68048 8.0497C5.88507 8.25429 6 8.53176 6 8.82109C6 9.11042 5.88507 9.3879 5.68048 9.59248C5.47589 9.79707 5.19842 9.912 4.90909 9.912C4.61976 9.912 4.34229 9.79707 4.1377 9.59248C3.93312 9.3879 3.81818 9.11042 3.81818 8.82109ZM14.4545 10.9091C14.4545 9.912 15.3665 8.45455 17.4545 8.45455C18.2564 8.45455 18.9818 8.844 19.4782 9.25745C19.7345 9.47127 19.9604 9.71564 20.1295 9.96982C20.2833 10.2 20.4545 10.5338 20.4545 10.9091H18.8182C18.8182 10.9495 18.8236 10.9735 18.8247 10.9789C18.8095 10.9432 18.7905 10.9092 18.768 10.8775C18.6726 10.7416 18.5588 10.6197 18.4298 10.5153C18.1091 10.2469 17.7425 10.0909 17.4545 10.0909C16.2753 10.0909 16.0931 10.8087 16.0909 10.908C16.0876 10.9036 16.0887 10.908 16.0909 10.9091V10.908C16.1567 10.9741 16.2344 11.027 16.32 11.064C16.632 11.22 17.0793 11.3356 17.6531 11.4785L17.7022 11.4916C18.2105 11.6182 18.8302 11.7731 19.32 12.0185C19.8349 12.276 20.4545 12.7636 20.4545 13.6364C20.4545 14.6335 19.5425 16.0909 17.4545 16.0909C15.3665 16.0909 14.4545 14.6335 14.4545 13.6364H16.0909C16.0909 13.7302 16.2698 14.4545 17.4545 14.4545C18.6338 14.4545 18.816 13.7367 18.8182 13.6375C18.8215 13.6418 18.8204 13.6375 18.8182 13.6364V13.6375C18.7524 13.5714 18.6747 13.5184 18.5891 13.4815C18.2771 13.3255 17.8298 13.2098 17.256 13.0669L17.2069 13.0538C16.6985 12.9273 16.0789 12.7724 15.5891 12.5269C15.0742 12.2695 14.4545 11.7818 14.4545 10.9091ZM8.45455 12.2727C8.45455 10.9931 9.38182 10.0909 10.3636 10.0909C11.3455 10.0909 12.2727 10.9931 12.2727 12.2727C12.2727 13.5524 11.3455 14.4545 10.3636 14.4545C9.38182 14.4545 8.45455 13.5524 8.45455 12.2727ZM10.3636 8.45455C8.33455 8.45455 6.81818 10.2393 6.81818 12.2727C6.81818 14.3062 8.33455 16.0909 10.3636 16.0909C12.3927 16.0909 13.9091 14.3062 13.9091 12.2727C13.9091 10.2393 12.3927 8.45455 10.3636 8.45455ZM4.09091 16.0909V10.3636H5.72727V16.0909H4.09091Z"
+                                                                                            fill="white" />
+                                                                                    </g>
+                                                                                    <defs>
+                                                                                        <clipPath id="clip0_23_24">
+                                                                                            <rect width="24" height="24"
+                                                                                                fill="white" />
+                                                                                        </clipPath>
+                                                                                    </defs>
+                                                                                </svg>
+                                                                                <span class="text-sm">16+</span>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div
+                                                                            class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/mtdulhdc.json"
+                                                                                trigger="hover"
+                                                                                colors="primary:#fff,secondary:#fff"
+                                                                                class="w-12 h-12 md:w-20 md:h-20 ">
+                                                                            </lord-icon>
+                                                                            <h3 x-text="$t('downloadApp')"
+                                                                                class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
+                                                                            </h3>
+                                                                        </div>
+                                                                        <p x-text="$t('clickForDownload')"
+                                                                            class="text-sm mb-4 font-normal text-white lg:text-base">
+                                                                        </p>
+                                                                        <a href="https://apps.apple.com/us/app/foxray/id6448898396"
+                                                                            class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
+                                                                            <lord-icon class="w-8 h-8"
+                                                                                src="https://cdn.lordicon.com/albqovim.json"
+                                                                                trigger="loop" delay="1500"
+                                                                                colors="primary:#fff" state="intro">
+                                                                            </lord-icon>
+                                                                            <span x-text="$t('download')"></span>
+                                                                            <lord-icon class="w-8 h-8"
+                                                                                src="https://cdn.lordicon.com/albqovim.json"
+                                                                                trigger="loop" delay="1500"
+                                                                                colors="primary:#fff" state="intro">
+                                                                            </lord-icon>
+                                                                        </a>
+                                                                        <div
+                                                                            class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/vcoyflbj.json"
+                                                                                trigger="hover"
+                                                                                colors="primary:#fff,secondary:#fff"
+                                                                                class="w-12 h-12 md:w-20 md:h-20 ">
+                                                                            </lord-icon>
+                                                                            <h3 x-text="$t('addConfigs')"
+                                                                                class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
+                                                                            </h3>
+                                                                        </div>
+                                                                        <p x-text="$t('clickForAdd')"
+                                                                            class="text-sm mb-4 font-normal text-white lg:text-base">
+                                                                        </p>
+                                                                        <button onclick="openFoXrayURL()"
+                                                                            class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between">
+                                                                            <lord-icon class="w-8 h-8"
+                                                                                src="https://cdn.lordicon.com/mrdiiocb.json"
+                                                                                trigger="loop" delay="2000"
+                                                                                colors="primary:#fff">
+                                                                            </lord-icon>
+                                                                            <span x-text="$t('AddtoApp')"></span>
+                                                                            <lord-icon class="w-8 h-8"
+                                                                                src="https://cdn.lordicon.com/mrdiiocb.json"
+                                                                                trigger="loop" delay="2000"
+                                                                                colors="primary:#fff">
+                                                                            </lord-icon>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
                                                     class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
                                                     <!-- Accordion item -->
                                                     <div x-data="{ expanded: false }">
@@ -4098,19 +4247,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                                                         class="flex items-center justify-start gap-x-2">
                                                                         <span x-text="$t('addStreisand')">
                                                                         </span>
-                                                                        <div
-                                                                            class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
-
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                viewBox="0 0 24 24" fill="currentColor"
-                                                                                class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
-                                                                                <path fill-rule="evenodd"
-                                                                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                                                                    clip-rule="evenodd" />
-                                                                            </svg>
-
-
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -4315,155 +4451,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                                                             </lord-icon>
                                                                         </a>
 
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 focus:ring-4 focus:outline-none focus:ring-teal-300 transition-all duration-300 font-medium rounded-2xl">
-                                                    <!-- Accordion item -->
-                                                    <div x-data="{ expanded: false }">
-                                                        <h2>
-                                                            <button style="direction: ltr;" id="faqs-title-01"
-                                                                type="button"
-                                                                class="flex items-center p-4 justify-between w-full text-left font-semibold"
-                                                                @click="expanded = !expanded" :aria-expanded="expanded"
-                                                                aria-controls="faqs-text-01">
-                                                                <div
-                                                                    class="flex items-center justify-start gap-x-2 text-lg sm:text-xl font-medium">
-                                                                    <svg width="24" height="24" viewBox="0 0 24 24"
-                                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <g clip-path="url(#clip0_20_20)">
-                                                                            <path
-                                                                                d="M11.9523 10.765C12.066 11.178 11.8686 11.5256 11.5874 11.8681C8.48852 15.6661 5.39565 19.4692 2.29679 23.2672C2.12928 23.4686 1.94383 23.6752 1.71052 23.8162C1.29175 24.063 0.693518 23.9875 0.346542 23.7004C-0.0423113 23.383 -0.126064 22.9095 0.208948 22.4864C0.974689 21.5193 1.76436 20.5673 2.54805 19.6102C4.62991 17.0564 6.71176 14.4975 8.80559 11.9487C8.96711 11.7523 8.93122 11.6263 8.77568 11.44C6.22121 8.45294 3.67871 5.46088 1.14219 2.46379C0.514047 1.72333 0.669589 0.776345 1.48319 0.282706C2.29081 -0.210934 3.40352 -0.0497451 4.04364 0.700788C6.13746 3.14884 8.20735 5.60696 10.2892 8.06004C10.6781 8.52346 11.0609 8.99191 11.4677 9.44526C11.8087 9.83312 12.0121 10.2512 11.9523 10.765Z"
-                                                                                fill="white" />
-                                                                            <path
-                                                                                d="M22.7803 0.176945C23.3008 0.171908 23.6298 0.317984 23.8452 0.635324C24.0905 1.00303 24.0307 1.35563 23.7615 1.68809C22.7145 2.97759 21.6616 4.2671 20.6147 5.55661C18.9337 7.62183 17.2586 9.68706 15.5597 11.7472C15.3563 11.9941 15.3563 12.1452 15.5656 12.392C18.144 15.4495 20.7105 18.5121 23.2709 21.5797C23.8632 22.2849 23.6897 23.2168 22.906 23.6903C22.0505 24.2091 20.9737 24.0681 20.3455 23.3276C18.3534 20.9602 16.3673 18.5776 14.3811 16.2051C13.8128 15.5251 13.2445 14.8501 12.6821 14.1701C12.0899 13.4599 12.0719 12.6791 12.6462 11.9739C15.7152 8.21118 18.7901 4.45347 21.8591 0.685695C22.1163 0.383467 22.4094 0.171908 22.7803 0.176945Z"
-                                                                                fill="white" />
-                                                                        </g>
-                                                                        <defs>
-                                                                            <clipPath id="clip0_20_20">
-                                                                                <rect width="24" height="24"
-                                                                                    fill="white" />
-                                                                            </clipPath>
-                                                                        </defs>
-                                                                    </svg>
-                                                                    <span x-text="$t('addFoXray')">
-                                                                    </span>
-                                                                    <div
-                                                                        class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
-
-                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            viewBox="0 0 24 24" fill="currentColor"
-                                                                            class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
-                                                                            <path fill-rule="evenodd"
-                                                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                                                                clip-rule="evenodd" />
-                                                                        </svg>
-
-
-                                                                    </div>
-                                                                </div>
-                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                    viewBox="0 0 24 24" stroke-width="1.5"
-                                                                    stroke="currentColor"
-                                                                    :class="{'!rotate-180': expanded}"
-                                                                    class="w-6 h-6 mx-6 transform origin-center transition duration-200 ease-out">
-                                                                    <path strokeLinecap="round" strokeLinejoin="round"
-                                                                        d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                                                                </svg>
-                                                            </button>
-                                                        </h2>
-                                                        <div id="faqs-text-01" role="region"
-                                                            aria-labelledby="faqs-title-01"
-                                                            class="grid text-sm text-white overflow-hidden transition-all duration-300 ease-in-out"
-                                                            :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'">
-                                                            <div class="overflow-hidden">
-                                                                <div class="p-4 pb-6">
-                                                                    <div class="flex flex-col">
-                                                                        <div class="flex items-center gap-x-2">
-                                                                            <span x-text="$t('needediOS')"></span>
-                                                                            <div
-                                                                                class="flex items-center rtl:flex-row-reverse rtl:justify-end gap-x-1">
-                                                                                <svg width="24" height="24"
-                                                                                    viewBox="0 0 24 24" fill="none"
-                                                                                    xmlns="http://www.w3.org/2000/svg">
-                                                                                    <g clip-path="url(#clip0_23_24)">
-                                                                                        <path fill-rule="evenodd"
-                                                                                            clip-rule="evenodd"
-                                                                                            d="M4.36364 0C3.20633 0 2.09642 0.459739 1.27808 1.27808C0.459739 2.09642 0 3.20633 0 4.36364V19.6364C0 20.7937 0.459739 21.9036 1.27808 22.7219C2.09642 23.5403 3.20633 24 4.36364 24H19.6364C20.7937 24 21.9036 23.5403 22.7219 22.7219C23.5403 21.9036 24 20.7937 24 19.6364V4.36364C24 3.20633 23.5403 2.09642 22.7219 1.27808C21.9036 0.459739 20.7937 0 19.6364 0H4.36364ZM3.81818 8.82109C3.81818 8.53176 3.93312 8.25429 4.1377 8.0497C4.34229 7.84512 4.61976 7.73018 4.90909 7.73018C5.19842 7.73018 5.47589 7.84512 5.68048 8.0497C5.88507 8.25429 6 8.53176 6 8.82109C6 9.11042 5.88507 9.3879 5.68048 9.59248C5.47589 9.79707 5.19842 9.912 4.90909 9.912C4.61976 9.912 4.34229 9.79707 4.1377 9.59248C3.93312 9.3879 3.81818 9.11042 3.81818 8.82109ZM14.4545 10.9091C14.4545 9.912 15.3665 8.45455 17.4545 8.45455C18.2564 8.45455 18.9818 8.844 19.4782 9.25745C19.7345 9.47127 19.9604 9.71564 20.1295 9.96982C20.2833 10.2 20.4545 10.5338 20.4545 10.9091H18.8182C18.8182 10.9495 18.8236 10.9735 18.8247 10.9789C18.8095 10.9432 18.7905 10.9092 18.768 10.8775C18.6726 10.7416 18.5588 10.6197 18.4298 10.5153C18.1091 10.2469 17.7425 10.0909 17.4545 10.0909C16.2753 10.0909 16.0931 10.8087 16.0909 10.908C16.0876 10.9036 16.0887 10.908 16.0909 10.9091V10.908C16.1567 10.9741 16.2344 11.027 16.32 11.064C16.632 11.22 17.0793 11.3356 17.6531 11.4785L17.7022 11.4916C18.2105 11.6182 18.8302 11.7731 19.32 12.0185C19.8349 12.276 20.4545 12.7636 20.4545 13.6364C20.4545 14.6335 19.5425 16.0909 17.4545 16.0909C15.3665 16.0909 14.4545 14.6335 14.4545 13.6364H16.0909C16.0909 13.7302 16.2698 14.4545 17.4545 14.4545C18.6338 14.4545 18.816 13.7367 18.8182 13.6375C18.8215 13.6418 18.8204 13.6375 18.8182 13.6364V13.6375C18.7524 13.5714 18.6747 13.5184 18.5891 13.4815C18.2771 13.3255 17.8298 13.2098 17.256 13.0669L17.2069 13.0538C16.6985 12.9273 16.0789 12.7724 15.5891 12.5269C15.0742 12.2695 14.4545 11.7818 14.4545 10.9091ZM8.45455 12.2727C8.45455 10.9931 9.38182 10.0909 10.3636 10.0909C11.3455 10.0909 12.2727 10.9931 12.2727 12.2727C12.2727 13.5524 11.3455 14.4545 10.3636 14.4545C9.38182 14.4545 8.45455 13.5524 8.45455 12.2727ZM10.3636 8.45455C8.33455 8.45455 6.81818 10.2393 6.81818 12.2727C6.81818 14.3062 8.33455 16.0909 10.3636 16.0909C12.3927 16.0909 13.9091 14.3062 13.9091 12.2727C13.9091 10.2393 12.3927 8.45455 10.3636 8.45455ZM4.09091 16.0909V10.3636H5.72727V16.0909H4.09091Z"
-                                                                                            fill="white" />
-                                                                                    </g>
-                                                                                    <defs>
-                                                                                        <clipPath id="clip0_23_24">
-                                                                                            <rect width="24" height="24"
-                                                                                                fill="white" />
-                                                                                        </clipPath>
-                                                                                    </defs>
-                                                                                </svg>
-                                                                                <span class="text-sm">16+</span>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
-                                                                            <lord-icon
-                                                                                src="https://cdn.lordicon.com/mtdulhdc.json"
-                                                                                trigger="hover"
-                                                                                colors="primary:#fff,secondary:#fff"
-                                                                                class="w-12 h-12 md:w-20 md:h-20 ">
-                                                                            </lord-icon>
-                                                                            <h3 x-text="$t('downloadApp')"
-                                                                                class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
-                                                                            </h3>
-                                                                        </div>
-                                                                        <p x-text="$t('clickForDownload')"
-                                                                            class="text-sm mb-4 font-normal text-white lg:text-base">
-                                                                        </p>
-                                                                        <a href="https://apps.apple.com/us/app/foxray/id6448898396"
-                                                                            class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
-                                                                            <lord-icon class="w-8 h-8"
-                                                                                src="https://cdn.lordicon.com/albqovim.json"
-                                                                                trigger="loop" delay="1500"
-                                                                                colors="primary:#fff" state="intro">
-                                                                            </lord-icon>
-                                                                            <span x-text="$t('download')"></span>
-                                                                            <lord-icon class="w-8 h-8"
-                                                                                src="https://cdn.lordicon.com/albqovim.json"
-                                                                                trigger="loop" delay="1500"
-                                                                                colors="primary:#fff" state="intro">
-                                                                            </lord-icon>
-                                                                        </a>
-                                                                        <div
-                                                                            class="flex items-center rtl:mr-[-10px] ltr:ml-[-10px] md:rtl:mr-[-20px] md:ltr:ml-[-20px]">
-                                                                            <lord-icon
-                                                                                src="https://cdn.lordicon.com/vcoyflbj.json"
-                                                                                trigger="hover"
-                                                                                colors="primary:#fff,secondary:#fff"
-                                                                                class="w-12 h-12 md:w-20 md:h-20 ">
-                                                                            </lord-icon>
-                                                                            <h3 x-text="$t('addConfigs')"
-                                                                                class="text-xl font-black leading-none tracking-tight text-white md:text-2xl">
-                                                                            </h3>
-                                                                        </div>
-                                                                        <p x-text="$t('clickForAdd')"
-                                                                            class="text-sm mb-4 font-normal text-white lg:text-base">
-                                                                        </p>
-                                                                        <button onclick="openFoXrayURL()"
-                                                                            class="flex mb-4 items-center gap-x-4 w-full bg-stone-800 shadow-md px-3 py-2 rounded-3xl justify-between">
-                                                                            <lord-icon class="w-8 h-8"
-                                                                                src="https://cdn.lordicon.com/mrdiiocb.json"
-                                                                                trigger="loop" delay="2000"
-                                                                                colors="primary:#fff">
-                                                                            </lord-icon>
-                                                                            <span x-text="$t('AddtoApp')"></span>
-                                                                            <lord-icon class="w-8 h-8"
-                                                                                src="https://cdn.lordicon.com/mrdiiocb.json"
-                                                                                trigger="loop" delay="2000"
-                                                                                colors="primary:#fff">
-                                                                            </lord-icon>
-                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -5378,19 +5365,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
                                                                         class="flex items-center justify-start gap-x-2">
                                                                         <span x-text="$t('addV2rayNG')">
                                                                         </span>
-                                                                        <div
-                                                                            class="bg-gray-100 pb-1.5 px-2 pt-1 rounded-full">
-
-                                                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                viewBox="0 0 24 24" fill="currentColor"
-                                                                                class="w-6 h-6 fill-yellow-500 stroke-yellow-500">
-                                                                                <path fill-rule="evenodd"
-                                                                                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-                                                                                    clip-rule="evenodd" />
-                                                                            </svg>
-
-
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
