@@ -3614,11 +3614,11 @@ if ($isTextHTML) {
                     },
                 },
                 Windows: {
-                    nekoray: {
+                    HiddifyNext: {
                         url: [
                             {
                                 name: "",
-                                url: "https://github.com/MatsuriDayo/nekoray/releases/download/3.8/nekoray-3.8-2023-06-14-windows64.zip",
+                                url: "https://github.com/hiddify/hiddify-next/releases/download/v0.9.2/hiddify-windows-x64-setup.zip",
                                 best: true,
                             },
                         ],
@@ -3683,7 +3683,7 @@ if ($isTextHTML) {
                     addShadowrocket: "Shadowrocket",
                     addsingbox: "Sing-Box",
                     addV2rayN: "v2rayN",
-                    addnekoray: "Nekoray",
+                    addHiddifyNext: "HiddifyNext",
                     addClash: "Clash",
                     addClashMeta: "Clash Meta",
                     addClashVerge: "Clash Verge",
@@ -3765,7 +3765,7 @@ if ($isTextHTML) {
                     addShadowrocket: "Shadowrocket",
                     addsingbox: "Sing-Box",
                     addV2rayN: "v2rayN",
-                    addnekoray: "Nekoray",
+                    addHiddifyNext: "HiddifyNext",
                     addClash: "Clash",
                     addClashMeta: "Clash Meta",
                     addClashVerge: "Clash Verge",
@@ -3847,7 +3847,7 @@ if ($isTextHTML) {
                     addShadowrocket: "Shadowrocket",
                     addsingbox: "Sing-Box",
                     addV2rayN: "v2rayN",
-                    addnekoray: "Nekoray",
+                    addHiddifyNext: "HiddifyNext",
                     addClash: "Clash",
                     addClashMeta: "Clash Meta",
                     addClashVerge: "Clash Verge",
@@ -6059,7 +6059,7 @@ if ($isTextHTML) {
                                                                                 d="M22.25 12.75V23.424L10.75 21.004V12.75H22.25ZM22.25 11.25V0.576L10.75 2.996V11.25H22.25ZM9.25 3.313L1.75 4.89V11.249H9.25V3.313ZM1.75 12.75H9.25V20.688L1.75 19.108V12.75Z"
                                                                                 fill="white" />
                                                                         </svg>
-                                                                        <span x-text="$t('addnekoray')">
+                                                                        <span x-text="$t('addHiddifyNext')">
                                                                         </span>
                                                                     </div>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -6093,7 +6093,7 @@ if ($isTextHTML) {
                                                                         <p x-text="$t('clickForDownload')"
                                                                             class="text-sm mb-4 font-normal text-white lg:text-base">
                                                                         </p>
-                                                                        <a href="https://github.com/MatsuriDayo/nekoray/releases/download/3.21/nekoray-3.21-2023-09-12-windows64.zip"
+                                                                        <a href="https://github.com/hiddify/hiddify-next/releases/download/v0.9.2/hiddify-windows-x64-setup.zip"
                                                                             class="flex mb-4 items-center gap-x-4 w-full bg-gray-800 shadow-md px-3 py-2 rounded-3xl justify-between">
                                                                             <lord-icon class="w-8 h-8"
                                                                                 src="https://cdn.lordicon.com/albqovim.json"
